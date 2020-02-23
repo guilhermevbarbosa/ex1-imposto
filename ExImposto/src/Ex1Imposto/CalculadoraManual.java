@@ -11,12 +11,19 @@ public class CalculadoraManual {
 		System.out.println("Digite seu salario");
 		double salarioBruto = Double.parseDouble(keyboard.nextLine());
 		
-		// Implemente aqui
 		Inss inss = new Inss(salarioBruto);
 		double descontoInss = inss.calcularDesconto();
 		System.out.println("Desconto INSS: " + descontoInss);
-		salarioLiquido = salarioBruto - descontoInss;
-
+		
+		double salarioMenosInss = salarioBruto - descontoInss;
+		
+		Irpf irpf = new Irpf(salarioMenosInss);
+		double descontoIrpf = irpf.calcularDesconto();
+		System.out.println("Desconto IRPF: " + descontoIrpf);
+		
+		System.out.println("Desconto Total: " + (descontoIrpf + descontoInss));
+		
+		salarioLiquido = salarioMenosInss - descontoIrpf;
 		System.out.println("Salario Liquido: " + salarioLiquido);
 	}
 
